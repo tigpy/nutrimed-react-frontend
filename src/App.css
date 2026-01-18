@@ -1,0 +1,588 @@
+/* App.css — core layout + new card styles */
+
+:root{
+  --bg:#f6f8fb;
+  --card:#fff;
+  --muted:#6b7280;
+  --accent:#0b6ef6;
+  --glass: rgba(255,255,255,0.75);
+}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#0f172a; -webkit-font-smoothing:antialiased}
+
+.page{min-height:100vh;display:flex;flex-direction:column}
+.topbar{background:linear-gradient(90deg, rgba(11,110,246,0.06), rgba(11,110,246,0.02));padding:14px 20px;border-bottom:1px solid rgba(15,23,42,0.04)}
+.topbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;gap:12px;align-items:center}
+.brand-text h1{margin:0;font-size:18px}
+.brand-text .muted{font-size:12px;color:var(--muted)}
+.top-actions .btn{margin-left:8px}
+
+/* container */
+.container{max-width:1100px;margin:22px auto;padding:0 18px;flex:1}
+
+/* hero */
+.hero{display:flex;gap:24px;align-items:flex-start}
+.hero-left{flex:1}
+.hero-right{width:260px;flex:0 0 260px}
+.hero-kpis{display:flex;gap:12px;margin-top:12px}
+.kpi{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.03);min-width:120px}
+.kpi-number{font-weight:700;font-size:16px}
+.kpi-label{font-size:12px;color:var(--muted)}
+
+/* form / controls */
+.controls-card{margin-top:18px;background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(15,23,42,0.03)}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.form-field{display:flex;flex-direction:column}
+.form-field label{font-size:13px;margin-bottom:6px;color:#10203b}
+.form-field input, .form-field select{padding:8px 10px;border:1px solid #e6eefb;border-radius:8px}
+.form-actions{display:flex;gap:10px;margin-top:12px}
+.btn{padding:8px 12px;border-radius:8px;border:0;background:var(--card);cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.secondary{background:#0bb37a;color:#fff}
+.btn.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06)}
+
+/* results */
+.result-area{margin-top:18px}
+.result-panel{display:flex;gap:18px;align-items:flex-start}
+.result-left{flex:1;background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(15,23,42,0.03)}
+.result-right{width:320px;flex:0 0 320px;display:flex;flex-direction:column;gap:12px}
+
+/* lists */
+.result-list{display:grid;grid-template-columns:120px 1fr;gap:8px 12px}
+.result-list dt{font-size:13px;color:var(--muted)}
+.result-list dd{margin:0;font-weight:600}
+
+/* meals */
+.meals{list-style:none;padding:0;margin:8px 0}
+.meal-item{display:flex;gap:12px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(11,110,246,0.03), rgba(11,110,246,0.01));margin-bottom:8px}
+.meal-body strong{display:block}
+
+/* cards on the sidebar */
+.card{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.03)}
+.summary-list{list-style:none;padding:0;margin:8px 0}
+.summary-list li{font-size:14px;margin-bottom:6px}
+
+/* EXERCISE CARDS */
+.exercises-cards{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.exercise-card{border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.9));box-shadow:0 6px 18px rgba(15,23,42,0.04);overflow:hidden;border:1px solid rgba(11,110,246,0.06)}
+.exercise-header{display:flex;justify-content:space-between;align-items:center;padding:12px;cursor:pointer}
+.exercise-title{font-weight:600}
+.exercise-toggle{font-size:20px;color:var(--accent);width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px}
+.exercise-body{padding:12px;border-top:1px solid rgba(15,23,42,0.03);background:linear-gradient(180deg, rgba(250,251,255,0.6), rgba(255,255,255,0.6))}
+.exercise-body .tip{margin:0 0 10px 0;color:#213547}
+.exercise-actions{display:flex;gap:8px}
+.btn.small{padding:6px 8px;font-size:13px}
+.btn.small.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--accent)}
+
+/* responsive */
+@media (max-width: 900px){
+  .form-grid{grid-template-columns:repeat(2,1fr)}
+  .result-panel{flex-direction:column}
+  .result-right{width:100%}
+  .hero{flex-direction:column}
+  .hero-right{width:100%}
+}
+@media (max-width: 640px){
+  .form-grid{grid-template-columns:1fr}
+}
+
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+
+
+
+
+
+
+
+
+/* Base style */
+.toggle-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  margin-left:10px;
+}
+
+/* Light mode */
+body.light .toggle-btn {
+  background: #e9e9e9;
+  color: #111;
+  border: 1px solid #cccccc;
+}
+
+/* Hover (light) */
+body.light .toggle-btn:hover {
+  background: #dcdcdc;
+}
+
+/* Dark mode */
+body.dark .toggle-btn {
+  background: #222;
+  color: #f2f2f2;
+  border: 1px solid #444;
+}
+
+/* Hover (dark) */
+body.dark .toggle-btn:hover {
+  background: #2f2f2f;
+}
+
+
+
+/* --------------------------------------------------
+  FORCE DARK MODE FOR ALL MAJOR SECTIONS WHEN body.dark
+-------------------------------------------------- */
+
+/* Base page containers */
+body.dark .page,
+body.dark .container,
+body.dark .hero,
+body.dark .controls-card,
+body.dark .result-area,
+body.dark .result-panel,
+body.dark .result-left,
+body.dark .result-right,
+body.dark .card,
+body.dark .summary,
+body.dark .guidance,
+body.dark .exercises-cards,
+body.dark .meals,
+body.dark .meal-item,
+body.dark .hero-left,
+body.dark .hero-right {
+  background: #0f0f12 !important;   /* deep page background */
+  color: #ffffff !important;        /* make all text white */
+  border-color: #222 !important;
+}
+
+/* Make header/footer match */
+body.dark .topbar,
+body.dark .footer,
+body.dark .topbar-inner {
+  background: #0b0c0e !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #202025;
+}
+
+/* KPIs (numbers and labels) */
+body.dark .hero-kpis,
+body.dark .kpi,
+body.dark .kpi-number,
+body.dark .kpi-label {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Labels, dt and dd in result list */
+body.dark .result-list dt,
+body.dark .result-list dd,
+body.dark dt,
+body.dark dd {
+  color: #ffffff !important;
+}
+
+/* Muted helper text should be lighter but readable */
+body.dark .muted,
+body.dark .muted.small {
+  color: #cfcfcf !important;
+}
+
+/* Input, selects and number fields */
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #141416 !important;
+  color: #ffffff !important;
+  border: 1px solid #2b2b2f !important;
+  caret-color: #fff !important;
+}
+
+/* Buttons */
+body.dark .btn,
+body.dark .btn.primary,
+body.dark .btn.secondary,
+body.dark .btn.ghost,
+body.dark .toggle-btn {
+  background: #1b6ef6 !important;     /* bright accent for buttons */
+  color: #fff !important;
+  border: 1px solid #0f57c2 !important;
+  box-shadow: none !important;
+}
+
+/* Ghost/secondary adjustments if you prefer desaturated */
+body.dark .btn.secondary {
+  background: #222 !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+}
+
+/* Exercise card specifics */
+body.dark .exercise-card,
+body.dark .exercise-header,
+body.dark .exercise-body {
+  background: #121213 !important;
+  color: #ffffff !important;
+  border: 1px solid #242426 !important;
+}
+
+/* Meals list */
+body.dark .meals,
+body.dark .meal-item,
+body.dark .meal-body {
+  background: #121213 !important;
+  color: #fff !important;
+  border: 1px solid #242426 !important;
+}
+
+/* Form labels and headings */
+body.dark label,
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark .brand-text,
+body.dark .brand-text p {
+  color: #ffffff !important;
+}
+
+/* Links */
+body.dark a {
+  color: #9ecbff !important;
+}
+
+/* Small utilities to ensure readability */
+body.dark .small,
+body.dark .summary-list li,
+body.dark .form-field {
+  color: #e6e6e6 !important;
+}
+
+/* Ensure icons/SVG strokes visible (targets inline svgs) */
+body.dark svg path,
+body.dark svg rect,
+body.dark svg circle,
+body.dark svg line,
+body.dark svg polygon {
+  stroke: currentColor !important;
+  fill: currentColor !important;
+  color: #ffffff !important;
+}
+
+/* Smooth transition so theme change isn't jarring */
+body.dark *,
+body.dark ::before,
+body.dark ::after {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* Fallback for any element that still shows light background:
+   this is aggressive — use only if needed */
+body.dark * {
+  background-blend-mode: normal !important;
+}
+/* ===== app router + flashcards styles (append) ===== */
+.app-root { display:flex; flex-direction:column; min-height:100vh }
+.app-header{ padding:14px 22px; border-bottom:1px solid #eef3ff; background:#fff }
+.brand{ display:flex; gap:12px; align-items:center }
+.logo-square{ width:44px; height:44px; border-radius:8px; background:#0b6ef6; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700 }
+.brand-title{ font-weight:700 }
+.brand-sub{ font-size:12px; color:#6b7280 }
+
+.app-main{ flex:1; padding:28px; max-width:1100px; margin:0 auto }
+.app-footer{ padding:12px; text-align:center; color:#9aa3b2 }
+
+/* form layout */
+.page-grid{ display:grid; grid-template-columns: 1fr 320px; gap:18px }
+.form-card{ padding:18px; border-radius:10px; background:#fff; box-shadow:0 6px 18px rgba(16,24,40,0.04) }
+.card.help-card{ padding:16px; background:#fff; border-radius:10px; }
+
+/* simple grid for inputs */
+.grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:10px }
+.grid-3 label{ display:flex; flex-direction:column; gap:6px; font-size:14px }
+.form-actions{ display:flex; gap:8px; margin-top:12px }
+
+/* Results layout */
+.results-grid{ display:grid; grid-template-columns: 1fr 320px; gap:18px; align-items:start }
+.results-left .card{ margin-bottom:12px }
+.summary-card{ padding:14px }
+
+/* flashcards row */
+.flash-row{ display:flex; gap:10px; margin-top:8px }
+.flash{ background:#f8fbff; padding:10px; border-radius:8px; min-width:120px; text-align:left }
+.flash-title{ font-size:12px; color:#6b7280 }
+.flash-value{ font-weight:700; margin-top:6px }
+
+/* macros */
+.macro-row{ margin:8px 0 }
+.macro-label{ display:flex; justify-content:space-between; font-size:13px; color:#334155; margin-bottom:6px }
+.macro-track{ height:10px; background:#e9eefb; border-radius:6px; overflow:hidden }
+.macro-fill{ height:100%; background: linear-gradient(90deg,#0b6ef6,#36a3ff); border-radius:6px }
+
+/* card grids */
+.card-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap:10px; margin-top:10px }
+.meal-card{ background:#fff; padding:12px; border-radius:10px; box-shadow:0 6px 18px rgba(16,24,40,0.03) }
+.meal-title{ font-weight:700 }
+
+/* exercises */
+.exercise-flash{ padding:12px; border-radius:8px; background:#fff; display:flex; justify-content:space-between; align-items:center; box-shadow:0 6px 18px rgba(16,24,40,0.03) }
+.exercise-title{ font-weight:600 }
+
+/* responsive */
+@media (max-width:900px){
+  .page-grid, .results-grid { grid-template-columns: 1fr; padding: 10px; }
+  .app-main{ padding:12px }
+}
+/* === animations, micro-interactions, accessibility & sticky actions === */
+
+/* fade-in helper */
+.fade-in { animation: fadeInUp 320ms ease both; }
+@keyframes fadeInUp { from { opacity:0; transform: translateY(8px);} to { opacity:1; transform: translateY(0);} }
+
+/* subtle hover lift */
+.hover-up { transition: transform .18s ease, box-shadow .18s ease; }
+.hover-up:hover, .hover-up:focus { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(16,24,40,0.08); outline: none; }
+
+/* focus styles for accessibility */
+:focus { outline: 3px solid rgba(11,110,246,0.18); outline-offset: 2px; border-radius: 8px; }
+
+/* Macro track color tweaks for visibility */
+.macro-track { background:#eef6ff; }
+.macro-fill { background: linear-gradient(90deg,#0b6ef6,#36a3ff); transition: width .5s ease; }
+
+/* meal & exercise cards layout */
+.meal-card, .exercise-flash { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:12px; border-radius:10px; background:#fff; box-shadow:0 6px 18px rgba(16,24,40,0.03); }
+.meal-actions, .exercise-actions { display:flex; gap:8px; align-items:center; }
+.meal-title { font-weight:700; }
+
+/* icons spacing */
+.exercise-title svg { vertical-align: middle; opacity: .9 }
+
+/* sticky actions for mobile */
+.sticky-actions {
+  display:none;
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 8px;
+  background: transparent;
+  z-index: 1200;
+  padding: 6px;
+}
+.sticky-actions .btn{ padding:10px 12px; border-radius:999px; box-shadow:0 8px 24px rgba(16,24,40,0.08); }
+
+/* small screens: show sticky actions */
+@media (max-width: 760px) {
+  .sticky-actions { display:flex; }
+  .results-grid { grid-template-columns: 1fr; padding-bottom: 110px; }
+  .results-right { order: 3; }
+  .results-left { order: 1; }
+}
+
+/* improved button hit targets */
+.btn, .btn.small { padding: 10px 12px; border-radius: 8px; font-weight:600; }
+
+/* small accessibility tweaks */
+input[type="file"]{ font-size: 13px; }
+/* === Theme toggle + help-card replacement styles === */
+
+/* theme toggle switch */
+.theme-toggle {
+  display: inline-block;
+  position: relative;
+  width: 46px;
+  height: 26px;
+}
+.theme-toggle input { display:none; }
+.theme-toggle .toggle-knob {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(16,24,40,0.12);
+  transition: transform 180ms ease, background 180ms ease;
+}
+.theme-toggle input:checked + .toggle-knob {
+  transform: translateX(20px);
+  background: white;
+}
+.theme-toggle { background: linear-gradient(90deg,#e6eefc,#f6fbff); border-radius: 999px; padding: 4px; border: 1px solid rgba(11,110,246,0.08); }
+
+/* help card compact layout */
+.help-card { display:flex; flex-direction:column; gap:12px; }
+
+/* dark theme */
+body.dark {
+  background: #0f1724;
+  color: #e6eef8;
+}
+body.dark .card {
+  background: #0b1220;
+  color: #e6eef8;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+body.dark input, body.dark select {
+  background: #071422;
+  color: #e6eef8;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+body.dark .muted { color: #9fb3d0; }
+body.dark .flash { background: rgba(255,255,255,0.03); }
+body.dark .btn.primary { background: linear-gradient(90deg,#1563e8,#2e9cff); }
+body.dark .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.06); }
+
+/* small responsive tweak for header toggle */
+@media (max-width: 760px) {
+  .page-grid { grid-template-columns: 1fr; padding: 18px; }
+}
+/* ---- Meal & Exercise card dark-mode contrast fixes ---- */
+/* Ensure meal/exercise cards always have readable text on both themes */
+
+/* Default (light theme): white cards with dark text */
+.meal-card, .exercise-flash {
+  background: #ffffff;
+  color: #0b1220;             /* strong dark text */
+  box-shadow: 0 6px 20px rgba(16,24,40,0.04);
+}
+
+/* Card inner text elements */
+.meal-card .meal-title,
+.exercise-flash .exercise-title,
+.meal-card .muted,
+.exercise-flash .muted,
+.meal-card .muted.small,
+.exercise-flash .muted.small {
+  color: #0b1220;
+  opacity: 0.95;
+}
+
+/* Copy button on card: make contrast strong */
+.meal-card .btn.small.ghost,
+.exercise-flash .link.small {
+  color: #0b6ef6;
+  background: #fff;
+  border: 1px solid rgba(11,110,246,0.08);
+}
+
+/* Hover/Focus - slightly lift */
+.meal-card:hover, .exercise-flash:hover,
+.meal-card:focus, .exercise-flash:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+  outline: none;
+}
+
+/* ---- Dark theme overrides ---- */
+body.dark .meal-card,
+body.dark .exercise-flash {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #e6eef8;            /* light text on dark card */
+  box-shadow: 0 8px 24px rgba(2,6,23,0.6);
+}
+
+/* Inner text (title/body) for dark mode */
+body.dark .meal-card .meal-title,
+body.dark .exercise-flash .exercise-title {
+  color: #e6eef8;
+  font-weight: 700;
+}
+body.dark .meal-card .muted,
+body.dark .exercise-flash .muted,
+body.dark .meal-card .muted.small,
+body.dark .exercise-flash .muted.small {
+  color: #9fb3d0;
+  opacity: 1;
+}
+
+/* Buttons & links on cards in dark mode */
+body.dark .meal-card .btn.small.ghost,
+body.dark .exercise-flash .link.small {
+  color: #9cc8ff;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Ensure macro bars still visible in dark */
+body.dark .macro-track { background: rgba(255,255,255,0.03); }
+body.dark .macro-fill { background: linear-gradient(90deg,#1563e8,#2e9cff); }
+
+/* Accessibility: increase contrast for copied text area */
+.meal-card .meal-content .muted.small,
+.exercise-flash .muted.small {
+  font-size: 13px;
+}
+
+/* Small spacing tweak so copy button doesn't overlap text on small screens */
+.meal-card .meal-content { flex: 1 1 auto; min-width: 0; }
+.meal-card .meal-actions { flex: 0 0 auto; margin-left: 12px; }
+
+/* If you use .card-grid with two columns, ensure consistent gap and background */
+.card-grid { gap: 14px; }
+
+/* ===== Premium animations & micro-interactions ===== */
+
+/* container animation tuning */
+.results-wrap { padding: 20px 28px 80px; }
+
+/* card motion baseline */
+.card { transition: transform .18s ease, box-shadow .18s ease; will-change: transform; }
+
+/* hover lift */
+.hover-up:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.12); }
+
+/* flash row */
+.flash-row { display:flex; gap:16px; margin-top:8px; flex-wrap:wrap; }
+.flash { padding: 12px 16px; border-radius:10px; background: #f7fbff; min-width: 160px; box-shadow: 0 6px 18px rgba(16,24,40,0.04); }
+.flash-title { font-size: 13px; color: #7b8aa3; margin-bottom:6px; }
+.flash-value { font-weight: 700; font-size: 18px; color: #081029; }
+
+/* card-grid */
+.card-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 12px; }
+
+/* meal & exercise cards */
+.meal-card, .exercise-flash {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px; border-radius: 10px; background: #fff;
+  box-shadow: 0 10px 30px rgba(16,24,40,0.04);
+}
+.meal-title { font-weight: 700; font-size: 15px; color:#081029; }
+.meal-content .muted.small, .exercise-flash .muted.small { color:#6b7280; }
+
+/* exercise button */
+.exercise-btn {
+  padding: 8px 12px; border-radius: 10px; font-weight: 700; font-size: 13px;
+  color: #0b6ef6; background: #fff; border: 1px solid rgba(11,110,246,0.08); text-decoration:none;
+}
+.exercise-btn:hover { background:#eaf3ff; border-color:#0b6ef6; }
+
+/* macro bars */
+.macro-row { margin:8px 0; }
+.macro-track { height:10px; background:#eaf4ff; border-radius:8px; overflow:hidden; }
+.macro-fill { height:100%; background: linear-gradient(90deg,#1563e8,#2e9cff); }
+
+/* sticky actions */
+.sticky-actions { position: fixed; right: 18px; bottom: 28px; display:flex; gap:8px; z-index:60; }
+
+/* responsive */
+@media (max-width: 900px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .sticky-actions { left: 14px; right: 14px; bottom: 14px; justify-content:center; }
+}
+
+/* dark-mode overrides (keep subtle) */
+body.dark .flash { background: rgba(255,255,255,0.02); box-shadow: 0 8px 30px rgba(2,6,23,0.6); color: #e6eef8; }
+body.dark .meal-card, body.dark .exercise-flash { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); color: #e6eef8; }
+body.dark .flash-value { color: #e6eef8; }
