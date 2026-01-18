@@ -1,27 +1,15 @@
-<<<<<<< HEAD
 {
   "root": true,
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true
+    "es2021": true
   },
-  "extends": ["react-app", "react-app/jest"],
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
   "rules": {
     "react-hooks/exhaustive-deps": "off"
   }
 }
-=======
-{
-  "root": true,
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-  "extends": ["react-app", "react-app/jest"],
-  "rules": {
-    "react-hooks/exhaustive-deps": "off"
-  }
-}
->>>>>>> b7ff98abfb671fc8d067c623c9011955a13e834a
+
